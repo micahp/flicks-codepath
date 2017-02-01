@@ -12,6 +12,8 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var networkIcon: UIImageView!
+    @IBOutlet weak var networkErrorView: UIView!
     @IBOutlet weak var tableView: UITableView!
     let baseURL = "https://image.tmdb.org/t/p/w500"
     let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -23,11 +25,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.networkErrorView.isHidden = true;
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        self.networkErrorView.addGestureRecognizer(gestureRecognizer)
+        
+        let icon = UIImage(named: "caution-sign.png")
+        self.networkIcon.image = icon
+        
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(self.refreshControl, at: 0)
+        
         update()
         
+    }
+    
+    func handleTap(_ recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .ended {
+            //self.networkErrorView.isHidden = true
+            update()
+        }
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
@@ -36,6 +52,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func update() {
         // Network Stuff
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -43,15 +60,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    
+                    self.networkErrorView.isHidden = true
                     print(dataDictionary)
                     self.movies = dataDictionary["results"] as! [NSDictionary]
                     self.tableView.reloadData()
                     self.refreshControl.endRefreshing()
                 }
+            } else {
+                self.networkErrorView.isHidden = false
+                print ("Netowrk Error")
+                MBProgressHUD.hide(for: self.view, animated: true)
+                //self.networkErrorView.click
             }
         }
         task.resume()
+    }
+    
+    func hide(view: UIView) {
+        view.isHidden = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

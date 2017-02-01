@@ -14,6 +14,7 @@
 		0D4C683B1E3FF57C002884B7 /* FlicksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C683A1E3FF57C002884B7 /* FlicksUITests.swift */; };
 		0D4C68461E3FF611002884B7 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C68451E3FF611002884B7 /* MoviesViewController.swift */; };
 		0D4C68491E400DBC002884B7 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C68481E400DBC002884B7 /* MovieCell.swift */; };
+		0D92EB0B1E41C7DC00026A77 /* caution-sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D92EB0A1E41C7DC00026A77 /* caution-sign.png */; };
 		23A32410C1E4EDD9E8DAEA24 /* Pods_FlicksUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301480403F65E153C1A48A4C /* Pods_FlicksUITests.framework */; };
 		5A20F4926252905C62676A4B /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FB66D9418DC0BAA3D52ECC /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		0D4C683C1E3FF57C002884B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D4C68451E3FF611002884B7 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		0D4C68481E400DBC002884B7 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		0D92EB0A1E41C7DC00026A77 /* caution-sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caution-sign.png"; sourceTree = "<group>"; };
 		1B24B8268B7D5239BF462F6C /* Pods-FlicksUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlicksUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlicksUITests/Pods-FlicksUITests.release.xcconfig"; sourceTree = "<group>"; };
 		301480403F65E153C1A48A4C /* Pods_FlicksUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlicksUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FB66D9418DC0BAA3D52ECC /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 				0D4C682C1E3FF57C002884B7 /* Assets.xcassets */,
 				0D4C682E1E3FF57C002884B7 /* LaunchScreen.storyboard */,
 				0D4C68311E3FF57C002884B7 /* Info.plist */,
+				0D92EB0A1E41C7DC00026A77 /* caution-sign.png */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D92EB0B1E41C7DC00026A77 /* caution-sign.png in Resources */,
 				0D4C68301E3FF57C002884B7 /* LaunchScreen.storyboard in Resources */,
 				0D4C682D1E3FF57C002884B7 /* Assets.xcassets in Resources */,
 				0D4C682B1E3FF57C002884B7 /* Main.storyboard in Resources */,
