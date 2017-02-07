@@ -34,15 +34,18 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(self.refreshControl, at: 0)
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         update()
+        MBProgressHUD.hide(for: self.view, animated: true)
         
     }
     
     func handleTap(_ recognizer: UITapGestureRecognizer) {
         if recognizer.state == .ended {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             //self.networkErrorView.isHidden = true
             update()
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
     
@@ -52,26 +55,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func update() {
         // Network Stuff
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let data = data {
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
-                    MBProgressHUD.hide(for: self.view, animated: true)
                     self.networkErrorView.isHidden = true
-                    print(dataDictionary)
-                    self.movies = dataDictionary["results"] as! [NSDictionary]
+                    //print(dataDictionary)
+                    self.movies = dataDictionary["results"] as? [NSDictionary]
                     self.tableView.reloadData()
-                    self.refreshControl.endRefreshing()
                 }
             } else {
                 self.networkErrorView.isHidden = false
                 print ("Netowrk Error")
                 MBProgressHUD.hide(for: self.view, animated: true)
-                //self.networkErrorView.click
             }
+            self.refreshControl.endRefreshing()
         }
         task.resume()
     }
@@ -90,22 +90,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //print ("row \(indexPath.row)")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
+        
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
-        let posterPath = movie["poster_path"] as! String
-        
-        let imageURL = NSURL(string: self.baseURL + posterPath)
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
-        
-        cell.posterView.setImageWith(imageURL as! URL)
         
         cell.title.text = title
         cell.overview.text = overview
-        print ("row \(indexPath.row)")
+        
+        if let posterPath = movie["poster_path"] as? String {
+            let imageURL = NSURL(string: self.baseURL + posterPath)
+            cell.posterView.setImageWith(imageURL as! URL)
+        }
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare4segue called")
+        let cell = sender as! UITableViewCell
+        let movie = movies![tableView.indexPath(for: cell)!.row]
+        //print(movie)
+        
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.movie = movie
     }
 
 }

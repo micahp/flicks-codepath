@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D3AC7731E4944F500C1A10D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3AC7721E4944F500C1A10D /* DetailViewController.swift */; };
 		0D4C68261E3FF57C002884B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C68251E3FF57C002884B7 /* AppDelegate.swift */; };
 		0D4C682B1E3FF57C002884B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4C68291E3FF57C002884B7 /* Main.storyboard */; };
 		0D4C682D1E3FF57C002884B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D4C682C1E3FF57C002884B7 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D3AC7721E4944F500C1A10D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0D4C68221E3FF57C002884B7 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4C68251E3FF57C002884B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D4C682A1E3FF57C002884B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 				0D4C682C1E3FF57C002884B7 /* Assets.xcassets */,
 				0D4C682E1E3FF57C002884B7 /* LaunchScreen.storyboard */,
 				0D4C68311E3FF57C002884B7 /* Info.plist */,
-				0D92EB0A1E41C7DC00026A77 /* caution-sign.png */,
+				0D92EB121E424B2B00026A77 /* Images */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -126,8 +128,17 @@
 			isa = PBXGroup;
 			children = (
 				0D4C68451E3FF611002884B7 /* MoviesViewController.swift */,
+				0D3AC7721E4944F500C1A10D /* DetailViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0D92EB121E424B2B00026A77 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0D92EB0A1E41C7DC00026A77 /* caution-sign.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		105B0EF9FE71B8AA02CF273E /* Frameworks */ = {
@@ -358,6 +369,7 @@
 				0D4C68261E3FF57C002884B7 /* AppDelegate.swift in Sources */,
 				0D4C68461E3FF611002884B7 /* MoviesViewController.swift in Sources */,
 				0D4C68491E400DBC002884B7 /* MovieCell.swift in Sources */,
+				0D3AC7731E4944F500C1A10D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
